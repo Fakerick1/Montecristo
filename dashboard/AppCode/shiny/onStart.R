@@ -8,7 +8,6 @@ onStart <- function() {
 
   onStop(function() {
     rm(list = ls()) # Unload all elements from global environment
-    db.disconnect(db.DWH.connection)
     print("Closing shiny app")
   })
 }

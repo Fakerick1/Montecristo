@@ -8,7 +8,9 @@ Packages <- c(
     "ggplot2",
     "lubridate",
     "chron",
-    "tidyr"
+    "tidyr",
+    "epubr",
+    "tm"
   )
 
 lapply(Packages, library, character.only = TRUE)

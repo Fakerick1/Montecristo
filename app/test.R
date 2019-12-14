@@ -35,7 +35,7 @@ for (i in 1:length(chapterIndices)) {
   chaptersdf <- rbind(chaptersdf, data.frame(chapter = book$line[chapterIndices[i]], text = paste(book$line[from:to], collapse = " "), stringsAsFactors = FALSE))
 }
 
-removeSpecialChars <- function(x) gsub("[^a-zA-ZÀ-ʯ ]","",x)
+removeSpecialChars <- function(x) gsub("[a-zA-Z]","",x)
 #Make it a corpus for cleaning
 #Bug (sort of), above-mentioned > abovementioned
 corpus <- chaptersdf$text %>%

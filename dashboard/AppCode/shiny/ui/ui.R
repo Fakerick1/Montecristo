@@ -15,6 +15,11 @@ ui <- fluidPage(
     dashboardHeader(
       title = actionLink(id.main.main, class = "logo", img(src = "images/montecristo_logo.png")),
       tags$li(
+        id = id.button.menuItem.database,
+        class = "dropdown menuItem",
+        actionLink(id.database.button.menu, "Database")
+      ),
+      tags$li(
         id = id.button.menuItem.textGen,
         class = "dropdown menuItem",
         actionLink(id.textGen.button.menu, "Textgen")

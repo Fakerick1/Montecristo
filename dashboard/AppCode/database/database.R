@@ -3,8 +3,10 @@
 
 # Created database connection
 db.connect <- function() {
-  db.DWH.connection <<- mongo("montecristo", url = "mongodb://localhost")
-
+  mongoConnect <- function(collectionName) mongo(collection = collectionName, db = "mcdb", url = "mongodb://localhost")
+  db.books <<- mongoConnect("books")
+  db.chapters <<- mongoConnect("chapters")
+  
   print("DB connection enabled for DWH and DM")
 }
 
