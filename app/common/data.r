@@ -1,3 +1,19 @@
+removeSpecialChars <- function(x) {
+  gsub("[^a-zA-Z ]", "", x)
+}
+
+corp.clean <- function(text) {
+  cleaned_text <- text %>%
+    VectorSource() %>%
+    VCorpus() %>%
+    tm_map(content_transformer(tolower)) %>%
+    tm_map(content_transformer(removeSpecialChars)) %>%
+    tm_map(removePunctuation) %>%
+    tm_map(removeWords, c(stopwords("english"), "the"))
+  
+  return(cleaned_text)
+}
+
 data.getData <- function() {
   #File: book.rtf, converted to txt through 'online-convert.com'
   book <- read.delim("data/book.txt", header = FALSE, fileEncoding = "UTF-8-BOM", sep = "\n", stringsAsFactors = FALSE)
@@ -19,32 +35,17 @@ data.getData <- function() {
   }
   data.chapters <<- chaptersdf
   
-  removeSpecialChars <- function(x) {
-    gsub("[^a-zA-ZÀ-ʯ ]","",x)
-  }
-  
-  corp.clean <- function(text) {
-    cleaned_text <- text %>%
-      VectorSource() %>%
-      VCorpus() %>%
-      tm_map(content_transformer(tolower)) %>%
-      tm_map(content_transformer(removeSpecialChars)) %>%
-      tm_map(removePunctuation) %>%
-      tm_map(removeWords, c(stopwords("english"), "the"))
-    return(cleaned_text)
-  }
-
   data.book.corpus <<- corp.clean(data.book$line)
-  data.book.dtm <<- removeSparseTerms(DocumentTermMatrix(data.book.corpus), 0.99)
-  data.book.tdm <<- removeSparseTerms(TermDocumentMatrix(data.book.corpus), 0.99)
+  data.book.dtm <<- DocumentTermMatrix(data.book.corpus)
+  data.book.tdm <<- TermDocumentMatrix(data.book.corpus)
   
   data.book_collapsed.corpus <<- corp.clean(data.book_collapsed$text)
-  data.book_collapsed.dtm <<- removeSparseTerms(DocumentTermMatrix(data.book_collapsed.corpus), 0.99)
-  data.book_collapsed.tdm <<- removeSparseTerms(TermDocumentMatrix(data.book_collapsed.corpus), 0.99)
+  data.book_collapsed.dtm <<- DocumentTermMatrix(data.book_collapsed.corpus)
+  data.book_collapsed.tdm <<- TermDocumentMatrix(data.book_collapsed.corpus)
   
   data.chapters.corpus <<- corp.clean(chaptersdf$text)
-  data.chapters.dtm <<- removeSparseTerms(DocumentTermMatrix(data.chapters.corpus), 0.99)
-  data.chapters.tdm <<- removeSparseTerms(TermDocumentMatrix(data.chapters.corpus), 0.99)
+  data.chapters.dtm <<- DocumentTermMatrix(data.chapters.corpus)
+  data.chapters.tdm <<- TermDocumentMatrix(data.chapters.corpus)
 }
 
 data.getData()
