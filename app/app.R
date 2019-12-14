@@ -1,30 +1,30 @@
 source("common/libraries.R")
 source("common/data.R")
-
+source("common/functions.R")
 #data.book_collapsed is het hele boek, gebruiken om meest gevonden terms te vinden
 
-terms <- findMostFreqTerms(data.book_collapsed.dtm, 50)
+terms <- findMostFreqTerms(data.book_collapsed.dtm, 10)
 terms50 <- names(terms[['1']])
 df <- as.data.frame(as.matrix(data.chapters.dtm), stringsAsFactors = FALSE)
 
-normalize <- function(x) {
-  return ((x - min(x)) / (max(x) - min(x)))
-}
+
 test <- select(df, terms50)
-test <- cbind(id = as.numeric(rownames(test)), test, stringsAsFactors = FALSE)
-test$said <- normalize(test$said)
-test$count <- normalize(test$count)
-ggplot(test, aes(x = id)) +
-  geom_line(aes(y = count), col = "red") +
-  geom_line(aes(y = said), col = "green")
+test <- cbind(id = as.numeric(rownames(test)), test)
+test <- test[40:50,]
 
-ggplot(test, aes(x = id, y = count)) +
-  geom_bar(stat="identity", col = "blue") +
-  geom_bar(aes(y = said), stat = "identity", col = "green")
+p <- plot_ly(test, x = ~id, mode = "none", stackgroup = "one", groupnorm = "percent")
 
-df <- as.data.frame(as.matrix(data.chapters.tdm), stringsAsFactors = FALSE)
-test <- df[terms50,]
-test <- cbind(word = rownames(test), test, stringsAsFactors = FALSE)
+for (name in colnames(test)[!colnames(test) == "id"]) {
+  p <- add_trace(p, data = test, y = test[[name]], name = name, type = "scatter", mode = "lines")
+}
 
-ggplot(test)
-plot(test$word, test$`1`)
+p
+#16:45 metro
+
+# Dashboard ideas:
+# Plot a given amount of most occuring terms over a given range of chapters
+# Plot the occurances of a given term over a given range of chapters
+# Plot the locations throughout the book on a world map
+# Plot relations to other words for a given word
+
+# Make an algorithm or ML program that, given a book, can find the locations in that book and plot them
