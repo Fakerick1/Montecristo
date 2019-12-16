@@ -22,7 +22,7 @@ ui <- fluidPage(
       tags$li(
         id = id.button.menuItem.textGen,
         class = "dropdown menuItem",
-        actionLink(id.textGen.button.menu, "Textgen")
+        actionLink(id.textGen.button.menu, "Generator")
       ),
       tags$li(
         id = id.button.menuItem.visual,

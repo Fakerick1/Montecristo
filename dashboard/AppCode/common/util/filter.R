@@ -7,12 +7,16 @@ util.filter.showSidebar <- function(shouldShow) {
 # Set the filter for a page.
 # Creates a set of ids for each page and shows only the set of filters that belong to the parameter.
 util.filter.setFilter <- function(page) {
-  filterIds <- c(id.general.book, id.general.chapter, id.general.word)
+  filterIds <- c(id.general.book, id.general.chapter, id.general.word,
+    id.textGen.markov.maxOverlapTotal, id.textGen.markov.maxOverlapRatio,
+    id.textGen.markov.maxSentenceLength)
 
   # Visual
   filterGroups.visual <- c(id.general.book, id.general.chapter, id.general.word)
   # Textgen
-  filterGroups.textGen <- c(id.general.book)
+  filterGroups.textGen <- c(
+    id.general.book, id.textGen.markov.maxOverlapTotal, id.textGen.markov.maxOverlapRatio,
+    id.textGen.markov.maxSentenceLength)
   # Analysis
   filterGroups.analysis <- c(id.general.book, id.general.chapter, id.general.word)
 

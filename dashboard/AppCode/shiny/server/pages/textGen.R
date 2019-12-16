@@ -1,3 +1,8 @@
 pages.textGen.getPage <- function() {
-  h1("Text gen")
+  tagList(
+    actionButton(id.textGen.button.markov, "Markov"),
+    actionButton(id.textGen.button.neural, "Neural network"),
+    hr(),
+    textOutput(id.textGen.output)
+  )
 }

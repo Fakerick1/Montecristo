@@ -10,7 +10,11 @@ Packages <- c(
     "chron",
     "tidyr",
     "epubr",
-    "tm"
+    "tm",
+    "markovifyR",
+    "keras",
+    "tidyverse",
+    "tokenizers"
   )
 
 lapply(Packages, library, character.only = TRUE)
@@ -19,7 +23,14 @@ print("AppCode - libraries.R")
 installPackages <- function() {
   # Fill the vector with packages that need to be installed in a different way
   lapply(Packages, install.packages, character.only = TRUE)
+  devtools::install_github("abresler/markovifyR")
 }
 
 # Uncomment if packages need to be installed
 #installPackages()
+
+# Uncomment if markovify for python needs to be installed
+#system("pip install markovify")
+
+# Uncomment if tensorFlow for python needs to be installed
+#system("pip install tensorFlow")

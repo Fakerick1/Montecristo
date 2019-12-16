@@ -16,12 +16,13 @@ observeEvent(input[[id.database.fileInput]], {
 
     for (i in 1:n) {
       chapterDf <- epub(uploadedFiles[i,]$datapath)
-      chapterDf$dtm <- list(cleanBook(chapterDf$data[[1]]$text))
-      db.chapters$insert(chapterDf)
 
       bookDf <- chapterDf
       bookDf$data[[1]] <- paste(bookDf$data[[1]]$text, collapse = "")
       db.books$insert(bookDf)
+
+      chapterDf$dtm <- list(cleanBook(chapterDf$data[[1]]$text))
+      db.chapters$insert(chapterDf)
 
       incProgress(1/n, detail = paste("Done with: ", uploadedFiles[i,]$name))
     }
@@ -41,5 +42,5 @@ cleanBook <- function(text) {
 }
 
 corpusToDTM <- function(corpus) {
-  as.matrix(removeSparseTerms(DocumentTermMatrix(corpus), 0.95))
+  as.data.frame(as.matrix(removeSparseTerms(DocumentTermMatrix(corpus), 0.95)), stringsAsFactors = FALSE)
 }

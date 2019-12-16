@@ -15,8 +15,15 @@ id.general.book <- "IDFilterBook"
 id.general.chapter <- "IDFilterChapter"
 id.general.word <- "IDFilterWord"
 
+id.textGen.markov.maxOverlapTotal <- "IDFilterMarkovMaxOverlapTotal"
+id.textGen.markov.maxOverlapRatio <- "IDFilterMarkovMaxOverlapRatio"
+id.textGen.markov.maxSentenceLength <- "IDFilterMarkovMaxSentenceLength"
+
 # textGen
 id.textGen.button.menu <- "IDtextGenMenu"
+id.textGen.button.markov <- "IDtextGenMarkov"
+id.textGen.button.neural <- "IDtextGenNeural"
+id.textGen.output <- "IDtextGenOutput"
 
 # Visual
 id.visual.button.menu <- "IDvisualMenu"
