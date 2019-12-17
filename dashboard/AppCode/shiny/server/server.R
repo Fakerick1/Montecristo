@@ -20,6 +20,8 @@ server <- function(input, output, session){
   source(paste0(localSetting,"shiny/server/serverPageLoader.R"),local=TRUE)
 
   # Components
+  source(paste0(localSetting,"shiny/server/components/noveltyChapterDifference.R"),local=TRUE)
+  source(paste0(localSetting,"shiny/server/components/noveltyNewWords.R"),local=TRUE)
 
   output$mainPage <- renderUI(pages.main.getPage())
 

@@ -6,7 +6,9 @@ db.connect <- function() {
   mongoConnect <- function(collectionName) mongo(collection = collectionName, db = "mcdb", url = "mongodb://localhost")
   db.books <<- mongoConnect("books")
   db.chapters <<- mongoConnect("chapters")
-  
+  db.dtms <<- mongoConnect("dtms")
+  db.tdms <<- mongoConnect("tdms")
+
   print("DB connection enabled for DWH and DM")
 }
 

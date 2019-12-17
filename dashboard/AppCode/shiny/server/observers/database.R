@@ -16,13 +16,19 @@ observeEvent(input[[id.database.fileInput]], {
 
     for (i in 1:n) {
       chapterDf <- epub(uploadedFiles[i,]$datapath)
+      db.chapters$insert(chapterDf)
 
       bookDf <- chapterDf
       bookDf$data[[1]] <- paste(bookDf$data[[1]]$text, collapse = "")
       db.books$insert(bookDf)
 
-      chapterDf$dtm <- list(cleanBook(chapterDf$data[[1]]$text))
-      db.chapters$insert(chapterDf)
+      dtmDf <- chapterDf
+      dtmDf$data <- list(cleanBook(chapterDf$data[[1]]$text, "DTM"))
+      db.dtms$insert(dtmDf)
+
+      tdmDf <- chapterDf
+      tdmDf$data <- list(cleanBook(chapterDf$data[[1]]$text, "TDM"))
+      db.tdms$insert(tdmDf)
 
       incProgress(1/n, detail = paste("Done with: ", uploadedFiles[i,]$name))
     }
@@ -31,16 +37,23 @@ observeEvent(input[[id.database.fileInput]], {
   init.sideBarFilters()
 })
 
-cleanBook <- function(text) {
+cleanBook <- function(text, kind) {
   cleaned_text <- text %>%
     VectorSource() %>%
     VCorpus() %>%
     tm_map(content_transformer(tolower)) %>%
     tm_map(removePunctuation) %>%
     tm_map(removeNumbers)
-  return(corpusToDTM(cleaned_text))
+  return(corpusToTermMatrix(cleaned_text, kind))
 }
 
-corpusToDTM <- function(corpus) {
-  as.data.frame(as.matrix(removeSparseTerms(DocumentTermMatrix(corpus), 0.95)), stringsAsFactors = FALSE)
+corpusToTermMatrix <- function(corpus, kind) {
+  if (kind == "DTM") {
+    as.data.frame(as.matrix(removeSparseTerms(DocumentTermMatrix(corpus), 0.95)), stringsAsFactors = FALSE)
+  } else if (kind == "TDM") {
+    as.data.frame(as.matrix(removeSparseTerms(TermDocumentMatrix(corpus), 0.95)), stringsAsFactors = FALSE)
+  } else {
+    return()
+  }
+
 }

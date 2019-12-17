@@ -13,10 +13,13 @@ util.filter.setFilter <- function(page) {
 
   # Visual
   filterGroups.visual <- c(id.general.book, id.general.chapter, id.general.word)
+  filterGroups.visual.novelty <- c(id.general.book)
+  
   # Textgen
   filterGroups.textGen <- c(
     id.general.book, id.textGen.markov.maxOverlapTotal, id.textGen.markov.maxOverlapRatio,
     id.textGen.markov.maxSentenceLength)
+
   # Analysis
   filterGroups.analysis <- c(id.general.book, id.general.chapter, id.general.word)
 
@@ -25,7 +28,8 @@ util.filter.setFilter <- function(page) {
   filterGroups.selectedFilters <<- switch(page,
     "Visual" = filterGroups.visual,
     "TextGen" = filterGroups.textGen,
-    "Analysis" = filterGroups.analysis
+    "Analysis" = filterGroups.analysis,
+    "Novelty" = filterGroups.visual.novelty
   )
 
   # Loop through all filter IDs and show/hide based on if they are in toShow

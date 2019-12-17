@@ -27,6 +27,10 @@ id.textGen.output <- "IDtextGenOutput"
 
 # Visual
 id.visual.button.menu <- "IDvisualMenu"
+id.visual.button.noveltyChapterDifference <- "IDvisualNoveltyChapterDifference"
+id.visual.noveltyChapterDifference.output <- "IDvisualNoveltyOutput"
+id.visual.button.noveltyNewWords <- "IDvisualNoveltyNewWords"
+id.visual.noveltyNewWords.output <- "IDvisualNoveltyNewWordsOutput"
 
 # Analysis
 id.analysis.button.menu <- "IDanalysisMenu"
