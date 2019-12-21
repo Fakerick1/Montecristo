@@ -16,3 +16,21 @@ observeEvent(input[[id.visual.button.noveltyNewWords]], {
   util.filter.setFilter("Novelty")
   output$mainPage <- renderUI(pages.visual.noveltyNewWords())
 })
+
+observeEvent(input[[id.visual.button.networkNGram]], {
+  util.filter.showSidebar(TRUE)
+  util.filter.setFilter("Novelty")
+  output$mainPage <- renderUI(pages.visual.networkNGram())
+})
+
+observeEvent(input[[id.visual.button.topBigrams]], {
+  util.filter.showSidebar(TRUE)
+  util.filter.setFilter("Novelty")
+  output$mainPage <- renderUI(pages.visual.topBigrams())
+})
+
+observeEvent(input[[id.visual.button.topTfIdfBigrams]], {
+  util.filter.showSidebar(TRUE)
+  util.filter.setFilter("Novelty")
+  output$mainPage <- renderUI(pages.visual.topTfIdfBigrams())
+})

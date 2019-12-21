@@ -25,12 +25,12 @@ output[[id.visual.noveltyChapterDifference.output]] <- renderPlot({
   }
 
   ggplot(diffDf, aes(x = chapter, y = diff)) +
-    geom_line() +
+    geom_line(colour = "#1f8897") +
     labs(x = "Chapter", y = "Difference to previous chapter") +
     ylim(0, 1) +
     theme(
       panel.background = element_rect(fill = "transparent"), # bg of the panel
-      plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+      plot.background = element_rect(fill = "#D9D9D9", color = NA), # bg of the plot
       #panel.grid.major = element_blank(), # get rid of major grid
       #panel.grid.minor = element_blank(), # get rid of minor grid
       legend.background = element_rect(fill = "transparent"), # get rid of legend bg

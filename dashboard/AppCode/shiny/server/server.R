@@ -22,6 +22,9 @@ server <- function(input, output, session){
   # Components
   source(paste0(localSetting,"shiny/server/components/noveltyChapterDifference.R"),local=TRUE)
   source(paste0(localSetting,"shiny/server/components/noveltyNewWords.R"),local=TRUE)
+  source(paste0(localSetting,"shiny/server/components/topBigrams.R"),local=TRUE)
+  source(paste0(localSetting,"shiny/server/components/topTfIdfBigrams.R"),local=TRUE)
+  source(paste0(localSetting,"shiny/server/components/networkNGram.R"),local=TRUE)
 
   output$mainPage <- renderUI(pages.main.getPage())
 

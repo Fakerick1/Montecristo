@@ -31,6 +31,12 @@ id.visual.button.noveltyChapterDifference <- "IDvisualNoveltyChapterDifference"
 id.visual.noveltyChapterDifference.output <- "IDvisualNoveltyOutput"
 id.visual.button.noveltyNewWords <- "IDvisualNoveltyNewWords"
 id.visual.noveltyNewWords.output <- "IDvisualNoveltyNewWordsOutput"
+id.visual.button.networkNGram <- "IDvisualNetworkNGram"
+id.visual.networkNGram.output <- "IDvisualNetworkNGramOutput"
+id.visual.button.topBigrams <- "IDvisualTopBigrams"
+id.visual.topBigrams.output <- "IDvisualTopBigramsOutput"
+id.visual.topTfIdfBigrams.output <- "IDvisualTopTfIdfBigramsOutput"
+id.visual.button.topTfIdfBigrams <- "IDvisualTopTfIdfBigrams"
 
 # Analysis
 id.analysis.button.menu <- "IDanalysisMenu"

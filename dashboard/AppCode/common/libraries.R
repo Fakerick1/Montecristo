@@ -14,7 +14,11 @@ Packages <- c(
     "markovifyR",
     "keras",
     "tidyverse",
-    "tokenizers"
+    "tokenizers",
+    "tidytext",
+    "widyr",
+    "ggraph",
+    "igraph"
   )
 
 lapply(Packages, library, character.only = TRUE)
