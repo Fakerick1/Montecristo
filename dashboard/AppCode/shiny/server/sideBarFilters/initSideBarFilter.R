@@ -3,7 +3,7 @@ init.sideBarFilters <- function() {
   allBooks <- db.books$find(
     query = '{}'
   )
-  
+
   updateSelectInput(session,
     id.general.book,
     choices = allBooks$title)

@@ -17,7 +17,7 @@ output[[id.visual.networkNGram.output]] <- renderPlot({
     print("Done with calculating")
 
     ggraph(text, layout = "fr") +
-    geom_edge_link(aes(edge_alpha = correlation), show.legend = FALSE) +
+    geom_edge_link(aes(edge_alpha = correlation), show.legend = TRUE) +
     geom_node_point(color = "lightblue", size = 5) +
     geom_node_text(aes(label = name), repel = TRUE) +
     theme(

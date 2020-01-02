@@ -40,6 +40,8 @@ id.visual.button.topTfIdfBigrams <- "IDvisualTopTfIdfBigrams"
 
 # Analysis
 id.analysis.button.menu <- "IDanalysisMenu"
+id.analysis.button.nlp <- "IDanalysisButtonNLP"
+id.analysis.nlp.output <- "IDanalysisNLPOutput"
 
 # database
 id.database.button.menu <- "IDdatabaseMenu"

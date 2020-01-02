@@ -25,6 +25,7 @@ server <- function(input, output, session){
   source(paste0(localSetting,"shiny/server/components/topBigrams.R"),local=TRUE)
   source(paste0(localSetting,"shiny/server/components/topTfIdfBigrams.R"),local=TRUE)
   source(paste0(localSetting,"shiny/server/components/networkNGram.R"),local=TRUE)
+  source(paste0(localSetting,"shiny/server/components/nlp.R"),local=TRUE)
 
   output$mainPage <- renderUI(pages.main.getPage())
 
