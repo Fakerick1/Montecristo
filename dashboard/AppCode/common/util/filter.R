@@ -14,14 +14,14 @@ util.filter.setFilter <- function(page) {
   # Visual
   filterGroups.visual <- c(id.general.book, id.general.chapter, id.general.word)
   filterGroups.visual.novelty <- c(id.general.book)
-  
+
   # Textgen
   filterGroups.textGen <- c(
     id.general.book, id.textGen.markov.maxOverlapTotal, id.textGen.markov.maxOverlapRatio,
     id.textGen.markov.maxSentenceLength)
 
   # Analysis
-  filterGroups.analysis <- c(id.general.book, id.general.chapter, id.general.word)
+  filterGroups.analysis <- c(id.general.book, id.general.chapter)
 
   # Put the filters needed for a page into a vector, based on selected page
   # Make it into a global variable so we can find out what filters are used on the current page

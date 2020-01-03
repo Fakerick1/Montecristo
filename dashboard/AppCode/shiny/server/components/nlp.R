@@ -1,4 +1,4 @@
-output[[id.analysis.nlp.output]] <- renderPlot({
+output[[id.analysis.nlp.output]] <- renderTable({
   selectedChapter <- input[[id.general.chapter]]
 
   chapter <- db.chapters$find(
@@ -11,17 +11,19 @@ output[[id.analysis.nlp.output]] <- renderPlot({
 
   chapter <- paste(chapter, collapse = "")
 
-  print(str(chapter))
-  print(nchar(chapter))
-  str <- as.String(chapter)
+  text <- as.String(chapter)
   sent_token_annotator <- Maxent_Sent_Token_Annotator()
   word_token_annotator <- Maxent_Word_Token_Annotator()
 
-  a2 <- annotate(str, list(sent_token_annotator, word_token_annotator))
+  tokens <- annotate(text, list(sent_token_annotator, word_token_annotator))
 
-  entity_annotator <- Maxent_Entity_Annotator(kind = "location")
-  a3 <- annotate(str, entity_annotator, a2)
+  location_annotator <- Maxent_Entity_Annotator(kind = "location")
+  person_annotator <- Maxent_Entity_Annotator(kind = "person")
 
-  print(str[entity_annotator(str, a2)])
-  print("Done")
+  persons <- data.frame(Name = text[person_annotator(text, tokens)], Type = "person", stringsAsFactors = FALSE)
+  locations <- data.frame(Name = text[location_annotator(text, tokens)], Type = "location", stringsAsFactors = FALSE)
+  entities <- rbind(persons, locations)
+
+  return(unique(entities))
+
 })

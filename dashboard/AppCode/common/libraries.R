@@ -20,7 +20,10 @@ Packages <- c(
     "ggraph",
     "igraph",
     "openNLP",
-    "openNLPmodels.en"
+    "openNLPmodels.en",
+    "leaflet",
+    "leaflet.extras",
+    "formattable"
   )
 
 lapply(Packages, library, character.only = TRUE)

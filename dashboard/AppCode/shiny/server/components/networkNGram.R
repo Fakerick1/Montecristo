@@ -11,7 +11,7 @@ output[[id.visual.networkNGram.output]] <- renderPlot({
     filter(n() >= 20) %>%
     pairwise_cor(word, section) %>%
     filter(!is.na(correlation),
-           correlation > .55) %>%
+           correlation > .65) %>% #.55
     graph_from_data_frame()
 
     print("Done with calculating")

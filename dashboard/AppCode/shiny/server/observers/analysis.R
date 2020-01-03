@@ -9,3 +9,9 @@ observeEvent(input[[id.analysis.button.nlp]], {
   util.filter.setFilter("Analysis")
   output$mainPage <- renderUI(pages.analysis.nlp())
 })
+
+observeEvent(input[[id.analysis.button.map]], {
+  util.filter.showSidebar(TRUE)
+  util.filter.setFilter("Novelty")
+  output$mainPage <- renderUI(pages.analysis.map())
+})
