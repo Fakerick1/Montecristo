@@ -20,10 +20,23 @@ output[[id.analysis.nlp.output]] <- renderTable({
   location_annotator <- Maxent_Entity_Annotator(kind = "location")
   person_annotator <- Maxent_Entity_Annotator(kind = "person")
 
-  persons <- data.frame(Name = text[person_annotator(text, tokens)], Type = "person", stringsAsFactors = FALSE)
-  locations <- data.frame(Name = text[location_annotator(text, tokens)], Type = "location", stringsAsFactors = FALSE)
-  entities <- rbind(persons, locations)
+  persons <- text[person_annotator(text, tokens)]
+  locations <- text[location_annotator(text, tokens)]
 
-  return(unique(entities))
+  entitiesDf <- data.frame(Name = character(0), Type = character(0))
+  personsDf <- data.frame(Name = character(0), Type = character(0))
+  locationsDf <- data.frame(Name = character(0), Type = character(0))
+
+  if(!identical(persons, character(0))) {
+    personsDf <- data.frame(Name = persons, Type = "person", stringsAsFactors = FALSE)
+  }
+
+  if(!identical(locations, character(0))) {
+    locationsDf <- data.frame(Name = locations, Type = "location", stringsAsFactors = FALSE)
+  }
+
+  entitiesDf <- rbind(personsDf, locationsDf)
+
+  return(unique(entitiesDf))
 
 })
