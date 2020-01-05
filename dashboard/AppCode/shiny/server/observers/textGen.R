@@ -39,11 +39,12 @@ observeEvent(input[[id.textGen.button.neural]], {
   text <- db.books$find(
     query = paste0('{"title": "', input[[id.general.book]], '" }'),
     fields = '{"data" : true}')$data[[1]] %>%
-    tokenize_characters(lowercase = FALSE, strip_non_alphanum = FALSE, simplify = TRUE)
+    substr(100000, 200000) %>%
+    tokenize_characters(lowercase = TRUE, strip_non_alphanum = FALSE, simplify = TRUE)
 
   print(paste("Length of text: ", length(text)))
 
-  max_length <- 20
+  max_length <- 40
 
   chars <- text %>%
     unique() %>%
@@ -57,6 +58,9 @@ observeEvent(input[[id.textGen.button.neural]], {
           next_char = text[.x + max_length])
   )
   dataset <- transpose(dataset)
+
+  print("Head of dataset: ")
+  # print(head(dataset))
 
   vectorize <- function(data, chars, max_length) {
     x <- array(0, dim = c(length(data$sentence), max_length, length(chars)))
@@ -74,6 +78,9 @@ observeEvent(input[[id.textGen.button.neural]], {
   }
 
   vectors <- vectorize(dataset, chars, max_length)
+
+  print("Head of vectors: ")
+  # print(head(vectors))
 
   create_model <- function(chars, max_length) {
     keras_model_sequential() %>%
@@ -139,14 +146,14 @@ observeEvent(input[[id.textGen.button.neural]], {
 
       fit_model(model, vectors)
 
-      for(diversity in c(0.2, 0.5, 1)) {
-        print(paste("Diversity: ", diversity))
-
-        current_phrase <- 1:10 %>%
-          map_chr(function(x) generate_phrase(model, text, chars, max_length, diversity))
-
-        print(current_phrase)
-      }
+      # for(diversity in c(0.2, 0.5, 1)) {
+      #   print(paste("Diversity: ", diversity))
+      #
+      #   current_phrase <- 1:10 %>%
+      #     map_chr(function(x) generate_phrase(model, text, chars, max_length, diversity))
+      #
+      #   print(current_phrase)
+      # }
     }
     NULL
   }
