@@ -22,7 +22,8 @@ id.textGen.markov.maxSentenceLength <- "IDFilterMarkovMaxSentenceLength"
 # textGen
 id.textGen.button.menu <- "IDtextGenMenu"
 id.textGen.button.markov <- "IDtextGenMarkov"
-id.textGen.button.neural <- "IDtextGenNeural"
+id.textGen.button.neural.train <- "IDtextGenNeural"
+id.textGen.button.neural.generate <- "IDtextGenNeuralGenerate"
 id.textGen.output <- "IDtextGenOutput"
 
 # Visual

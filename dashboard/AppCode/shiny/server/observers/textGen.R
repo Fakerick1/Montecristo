@@ -35,11 +35,11 @@ observeEvent(input[[id.textGen.button.markov]], {
   component.textGen.setOutputText(result$result)
 })
 
-observeEvent(input[[id.textGen.button.neural]], {
+observeEvent(input[[id.textGen.button.neural.train]], {
   text <- db.books$find(
     query = paste0('{"title": "', input[[id.general.book]], '" }'),
     fields = '{"data" : true}')$data[[1]] %>%
-    substr(100000, 200000) %>%
+    substr(100000, 1100000) %>%
     tokenize_characters(lowercase = TRUE, strip_non_alphanum = FALSE, simplify = TRUE)
 
   print(paste("Length of text: ", length(text)))
@@ -145,7 +145,8 @@ observeEvent(input[[id.textGen.button.neural]], {
       print(paste("Iteration: ", iteration))
 
       fit_model(model, vectors)
-
+      save_model_hdf5(model, paste0(input[[id.general.book]], ".h5"))
+      gc()
       # for(diversity in c(0.2, 0.5, 1)) {
       #   print(paste("Diversity: ", diversity))
       #
@@ -161,6 +162,66 @@ observeEvent(input[[id.textGen.button.neural]], {
   model <- create_model(chars, max_length)
 
   iterate_model(model, text, chars, max_length, diversity, vectors, 40)
+
+  phrase <- generate_phrase(model, text, chars, max_length, 0.6)
+  component.textGen.setOutputText(phrase)
+})
+
+observeEvent(input[[id.textGen.button.neural.generate]], {
+  print("generate")
+  model <- load_model_hdf5(paste0(input[[id.general.book]], ".h5"))
+  print(str(model))
+  text <- db.books$find(
+    query = paste0('{"title": "', input[[id.general.book]], '" }'),
+    fields = '{"data" : true}')$data[[1]] %>%
+    substr(100000, 1100000) %>%
+    tokenize_characters(lowercase = TRUE, strip_non_alphanum = FALSE, simplify = TRUE)
+
+  print(paste("Length of text: ", length(text)))
+
+  max_length <- 40
+
+  chars <- text %>%
+    unique() %>%
+    sort()
+
+  generate_phrase <- function(model, text, chars, max_length, diversity) {
+    choose_next_char <- function(preds, chars, temperature) {
+      preds <- log(preds) / temperature
+      exp_preds <- exp(preds)
+      preds <- exp_preds / sum(exp(preds))
+
+      next_index <- rmultinom(1, 1, preds) %>%
+        as.integer() %>%
+        which.max()
+      chars[next_index]
+    }
+
+    convert_sentence_to_data <- function(sentence, chars) {
+      x <- sapply(chars, function(x) {
+        as.integer(x == sentence)
+      })
+      array_reshape(x, c(1, dim(x)))
+    }
+
+    start_index <- sample(1:(length(text) - max_length), size = 1)
+    sentence <- text[start_index:(start_index + max_length - 1)]
+    generated <- ""
+
+    for (i in 1:(max_length * 20)) {
+      sentence_data <- convert_sentence_to_data(sentence, chars)
+
+      preds <- predict(model, sentence_data)
+
+      next_char <- choose_next_char(preds, chars, diversity)
+
+      generated <- str_c(generated, next_char, collapse = "")
+
+      sentence <- c(sentence[-1], next_char)
+    }
+
+    generated
+  }
 
   phrase <- generate_phrase(model, text, chars, max_length, 0.6)
   component.textGen.setOutputText(phrase)
