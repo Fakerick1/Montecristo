@@ -11,7 +11,7 @@ output[[id.visual.networkNGram.output]] <- renderPlot({
     filter(n() >= 20) %>%
     pairwise_cor(word, section) %>%
     filter(!is.na(correlation),
-           correlation > .55) %>% #.55
+           correlation > .55) %>%
     graph_from_data_frame()
 
     print("Done with calculating")
@@ -28,17 +28,4 @@ output[[id.visual.networkNGram.output]] <- renderPlot({
         legend.background = element_rect(fill = "transparent"), # get rid of legend bg
         legend.box.background = element_rect(fill = "transparent"), # get rid of legend panel bg
     )
-  # ggplot(text, aes(x = reorder(bigram, n), y = n)) +
-  # geom_bar(stat = "identity", show.legend = FALSE, colour = "#1f8897", fill = "#1f8897") +
-  # labs(y = "Number of occurences", x = "Word combination") +
-  # coord_flip() +
-  # theme(
-  #   panel.background = element_rect(fill = "transparent"), # bg of the panel
-  #   plot.background = element_rect(fill = "#D9D9D9", color = NA), # bg of the plot
-  #   #panel.grid.major = element_blank(), # get rid of major grid
-  #   #panel.grid.minor = element_blank(), # get rid of minor grid
-  #   legend.background = element_rect(fill = "transparent"), # get rid of legend bg
-  #   legend.box.background = element_rect(fill = "transparent"), # get rid of legend panel bg
-  #   text = element_text(size = 16)
-  # )
 })
