@@ -4,7 +4,6 @@ output[[id.analysis.nlp.output]] <- renderTable({
   chapter <- db.chapters$find(
     query = paste0('{"title": "', input[[id.general.book]], '"}'),
     fields = '{"data" : true}')$data[[1]] %>%
-    filter(nword > 50) %>%
     select(text)
 
   chapter <- chapter$text[selectedChapter]
