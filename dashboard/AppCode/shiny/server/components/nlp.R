@@ -1,4 +1,4 @@
-output[[id.analysis.nlp.output]] <- renderTable({
+output[[id.analysis.nlp.output]] <- renderDataTable({
   selectedChapter <- input[[id.general.chapter]]
 
   chapter <- db.chapters$find(
@@ -33,9 +33,8 @@ output[[id.analysis.nlp.output]] <- renderTable({
   if(!identical(locations, character(0))) {
     locationsDf <- data.frame(Name = locations, Type = "location", stringsAsFactors = FALSE)
   }
+  entitiesDf <- rbind(unique(personsDf), unique(locationsDf))
 
-  entitiesDf <- rbind(personsDf, locationsDf)
-
-  return(unique(entitiesDf))
+  return(datatable(entitiesDf, options = list(dom = "tp"), rownames = FALSE))
 
 })

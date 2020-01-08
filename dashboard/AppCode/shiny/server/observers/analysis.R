@@ -15,3 +15,9 @@ observeEvent(input[[id.analysis.button.map]], {
   util.filter.setFilter("Novelty")
   output$mainPage <- renderUI(pages.analysis.map())
 })
+
+observeEvent(input[[id.analysis.button.comparison]], {
+  util.filter.showSidebar(TRUE)
+  util.filter.setFilter("BookMultiple")
+  output$mainPage <- renderUI(pages.analysis.comparison())
+})

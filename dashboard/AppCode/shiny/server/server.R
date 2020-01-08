@@ -27,6 +27,7 @@ server <- function(input, output, session){
   source(paste0(localSetting,"shiny/server/components/networkNGram.R"),local=TRUE)
   source(paste0(localSetting,"shiny/server/components/nlp.R"),local=TRUE)
   source(paste0(localSetting,"shiny/server/components/map.R"),local=TRUE)
+  source(paste0(localSetting,"shiny/server/components/comparison.R"),local=TRUE)
 
   output$mainPage <- renderUI(pages.main.getPage())
 

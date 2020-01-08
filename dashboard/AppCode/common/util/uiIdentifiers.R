@@ -14,6 +14,7 @@ id.button.menuItem.database <- "IDLIdatabase"
 id.general.book <- "IDFilterBook"
 id.general.chapter <- "IDFilterChapter"
 id.general.word <- "IDFilterWord"
+id.general.bookMultiple <- "IDFilterBookMultiple"
 
 id.textGen.markov.maxOverlapTotal <- "IDFilterMarkovMaxOverlapTotal"
 id.textGen.markov.maxOverlapRatio <- "IDFilterMarkovMaxOverlapRatio"
@@ -45,6 +46,8 @@ id.analysis.button.nlp <- "IDanalysisButtonNLP"
 id.analysis.nlp.output <- "IDanalysisNLPOutput"
 id.analysis.map.output <- "IDanalysisMapOutput"
 id.analysis.button.map <- "IDanalysisButtonMap"
+id.analysis.button.comparison <- "IDanalysisButtonComparison"
+id.analysis.comparison.output <- "IDanalysisComparisonOutput"
 
 # database
 id.database.button.menu <- "IDdatabaseMenu"

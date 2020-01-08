@@ -23,7 +23,8 @@ Packages <- c(
     "openNLPmodels.en",
     "leaflet",
     "leaflet.extras",
-    "formattable"
+    "formattable",
+    "DT"
   )
 
 lapply(Packages, library, character.only = TRUE)

@@ -5,7 +5,8 @@ sideBar <- sidebarMenu(
   selectInput(id.general.book, label = "Book", choices = c(""), multiple = FALSE),
   numericInput(id.general.chapter, label = "Chapter", value = 1),
   selectInput(id.general.word, label = "Word", choices = c(""), multiple = FALSE),
-
+  selectInput(id.general.bookMultiple, label = "Book(s)", choices = c(""), multiple = TRUE),
+  
   #TextGen
   sliderInput(id.textGen.markov.maxOverlapTotal, label = "Markov max overlap total", min = 1, max = 100, value = 15),
   sliderInput(id.textGen.markov.maxOverlapRatio, label = "Markov max overlap ratio", min = 1, max = 100, value = 70),

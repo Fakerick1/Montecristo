@@ -9,7 +9,7 @@ util.filter.showSidebar <- function(shouldShow) {
 util.filter.setFilter <- function(page) {
   filterIds <- c(id.general.book, id.general.chapter, id.general.word,
     id.textGen.markov.maxOverlapTotal, id.textGen.markov.maxOverlapRatio,
-    id.textGen.markov.maxSentenceLength)
+    id.textGen.markov.maxSentenceLength, id.general.bookMultiple)
 
   # Visual
   filterGroups.visual <- c(id.general.book, id.general.chapter, id.general.word)
@@ -22,6 +22,7 @@ util.filter.setFilter <- function(page) {
 
   # Analysis
   filterGroups.analysis <- c(id.general.book, id.general.chapter)
+  filterGroups.analysis.comparison <- c(id.general.bookMultiple)
 
   # Put the filters needed for a page into a vector, based on selected page
   # Make it into a global variable so we can find out what filters are used on the current page
@@ -29,7 +30,8 @@ util.filter.setFilter <- function(page) {
     "Visual" = filterGroups.visual,
     "TextGen" = filterGroups.textGen,
     "Analysis" = filterGroups.analysis,
-    "Novelty" = filterGroups.visual.novelty
+    "Novelty" = filterGroups.visual.novelty,
+    "BookMultiple" = filterGroups.analysis.comparison
   )
 
   # Loop through all filter IDs and show/hide based on if they are in toShow

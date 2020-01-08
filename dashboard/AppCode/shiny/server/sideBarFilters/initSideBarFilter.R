@@ -7,6 +7,10 @@ init.sideBarFilters <- function() {
   updateSelectInput(session,
     id.general.book,
     choices = allBooks$title)
+    
+  updateSelectInput(session,
+    id.general.bookMultiple,
+    choices = allBooks$title)
 }
 
 print("shiny - server - serverSideBarFilters - initSideBarFilters.R")
