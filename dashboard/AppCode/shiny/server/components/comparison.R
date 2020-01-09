@@ -29,5 +29,6 @@ output[[id.analysis.comparison.output]] <- renderDataTable({
     curInfo <- getBookInfo(book)
     ifelse(is.na(info), info <- curInfo, info <- rbind(info, curInfo))
   }
-  return(datatable(info, filter = "top", options = list(dom = "ft")))
+  
+  return(datatable(info, filter = "top"))
 })

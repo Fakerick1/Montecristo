@@ -6,11 +6,15 @@ sideBar <- sidebarMenu(
   numericInput(id.general.chapter, label = "Chapter", value = 1),
   selectInput(id.general.word, label = "Word", choices = c(""), multiple = FALSE),
   selectInput(id.general.bookMultiple, label = "Book(s)", choices = c(""), multiple = TRUE),
-  
+
   #TextGen
   sliderInput(id.textGen.markov.maxOverlapTotal, label = "Markov max overlap total", min = 1, max = 100, value = 15),
   sliderInput(id.textGen.markov.maxOverlapRatio, label = "Markov max overlap ratio", min = 1, max = 100, value = 70),
   sliderInput(id.textGen.markov.maxSentenceLength, label = "Markov max sentence length (letters)", min = 1, max = 500, value = 150),
+
+  #Goodreads
+  textInput(id.goodreads.userId, label = "User ID"),
+  textInput(id.goodreads.apikey, label = "API Key"),
 
   htmlOutput("urlText", inline = TRUE)
 )

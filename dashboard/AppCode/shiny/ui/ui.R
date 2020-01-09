@@ -20,6 +20,11 @@ ui <- fluidPage(
         actionLink(id.database.button.menu, "Database")
       ),
       tags$li(
+        id = id.button.menuItem.goodreads,
+        class = "dropdown menuItem",
+        actionLink(id.goodreads.button.menu, "Goodreads")
+      ),
+      tags$li(
         id = id.button.menuItem.textGen,
         class = "dropdown menuItem",
         actionLink(id.textGen.button.menu, "Generator")

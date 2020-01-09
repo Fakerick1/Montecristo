@@ -168,9 +168,7 @@ observeEvent(input[[id.textGen.button.neural.train]], {
 })
 
 observeEvent(input[[id.textGen.button.neural.generate]], {
-  print("generate")
   model <- load_model_hdf5(paste0(input[[id.general.book]], ".h5"))
-  print(str(model))
   text <- db.books$find(
     query = paste0('{"title": "', input[[id.general.book]], '" }'),
     fields = '{"data" : true}')$data[[1]] %>%

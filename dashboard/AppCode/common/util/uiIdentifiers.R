@@ -9,6 +9,7 @@ id.button.menuItem.textGen <- "IDLItextGen"
 id.button.menuItem.visual <- "IDLIvisual"
 id.button.menuItem.analysis <- "IDLIanalysis"
 id.button.menuItem.database <- "IDLIdatabase"
+id.button.menuItem.goodreads <- "IDLIgoodreads"
 
 # filters
 id.general.book <- "IDFilterBook"
@@ -19,6 +20,9 @@ id.general.bookMultiple <- "IDFilterBookMultiple"
 id.textGen.markov.maxOverlapTotal <- "IDFilterMarkovMaxOverlapTotal"
 id.textGen.markov.maxOverlapRatio <- "IDFilterMarkovMaxOverlapRatio"
 id.textGen.markov.maxSentenceLength <- "IDFilterMarkovMaxSentenceLength"
+
+id.goodreads.userid <- "IDFilterGoodreadsUserID"
+id.goodreads.apikey <- "IDFilterGoodreadsAPIKey"
 
 # textGen
 id.textGen.button.menu <- "IDtextGenMenu"
@@ -53,6 +57,10 @@ id.analysis.comparison.output <- "IDanalysisComparisonOutput"
 id.database.button.menu <- "IDdatabaseMenu"
 id.database.fileInput <- "IDdatabasefileInput"
 id.database.statusMessage <- "IDdatabaseStatusMessage"
+
+# Goodreads
+id.goodreads.button.menu <- "IDGoodreadsMenu"
+id.goodreads.output <- "IDGoodreadsOutput"
 
 # home
 id.main.main <- "IDMain"

@@ -291,3 +291,7 @@ button:hover:not(.back-button) {
 .mainPage-wrapper h1{
 	text-align: center;
 }
+
+#IDLIdatabase, #IDLIgoodreads, #IDLItextGen, #IDLIvisual, #IDLIanalysis {
+	width: calc(18% - 10px);
+}

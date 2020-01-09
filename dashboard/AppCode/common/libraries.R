@@ -24,7 +24,8 @@ Packages <- c(
     "leaflet",
     "leaflet.extras",
     "formattable",
-    "DT"
+    "DT",
+    "xml2"
   )
 
 lapply(Packages, library, character.only = TRUE)

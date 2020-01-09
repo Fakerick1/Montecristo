@@ -36,5 +36,4 @@ output[[id.analysis.nlp.output]] <- renderDataTable({
   entitiesDf <- rbind(unique(personsDf), unique(locationsDf))
 
   return(datatable(entitiesDf, options = list(dom = "tp"), rownames = FALSE))
-
 })
