@@ -30,6 +30,7 @@ id.textGen.button.markov <- "IDtextGenMarkov"
 id.textGen.button.neural.train <- "IDtextGenNeural"
 id.textGen.button.neural.generate <- "IDtextGenNeuralGenerate"
 id.textGen.output <- "IDtextGenOutput"
+id.textGen.button.load <- "IDtextGenNeuralLoad"
 
 # Visual
 id.visual.button.menu <- "IDvisualMenu"

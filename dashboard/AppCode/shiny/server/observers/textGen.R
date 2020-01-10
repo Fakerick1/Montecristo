@@ -168,21 +168,6 @@ observeEvent(input[[id.textGen.button.neural.train]], {
 })
 
 observeEvent(input[[id.textGen.button.neural.generate]], {
-  model <- load_model_hdf5(paste0(input[[id.general.book]], ".h5"))
-  text <- db.books$find(
-    query = paste0('{"title": "', input[[id.general.book]], '" }'),
-    fields = '{"data" : true}')$data[[1]] %>%
-    substr(100000, 1100000) %>%
-    tokenize_characters(lowercase = TRUE, strip_non_alphanum = FALSE, simplify = TRUE)
-
-  print(paste("Length of text: ", length(text)))
-
-  max_length <- 40
-
-  chars <- text %>%
-    unique() %>%
-    sort()
-
   generate_phrase <- function(model, text, chars, max_length, diversity) {
     choose_next_char <- function(preds, chars, temperature) {
       preds <- log(preds) / temperature
@@ -220,7 +205,27 @@ observeEvent(input[[id.textGen.button.neural.generate]], {
 
     generated
   }
-
-  phrase <- generate_phrase(model, text, chars, max_length, 0.6)
+  print("Generating phrase")
+  phrase <- generate_phrase(c.model, c.text, c.chars, c.max_length, 0.6)
   component.textGen.setOutputText(phrase)
+  print("Done generating")
+})
+
+observeEvent(input[[id.textGen.button.load]], {
+  print("Loading model")
+  c.model <<- load_model_hdf5(paste0(input[[id.general.book]], ".h5"))
+  c.text <<- db.books$find(
+    query = paste0('{"title": "', input[[id.general.book]], '" }'),
+    fields = '{"data" : true}')$data[[1]] %>%
+    substr(100000, 1100000) %>%
+    tokenize_characters(lowercase = TRUE, strip_non_alphanum = FALSE, simplify = TRUE)
+
+  print(paste("Length of text: ", length(c.text)))
+
+  c.max_length <<- 40
+
+  c.chars <<- c.text %>%
+    unique() %>%
+    sort()
+  print("Done loading")
 })
