@@ -13,7 +13,7 @@ sideBar <- sidebarMenu(
   sliderInput(id.textGen.markov.maxSentenceLength, label = "Markov max sentence length (letters)", min = 1, max = 500, value = 150),
 
   #Goodreads
-  textInput(id.goodreads.userId, label = "User ID"),
+  textInput(id.goodreads.userid, label = "User ID"),
   textInput(id.goodreads.apikey, label = "API Key"),
 
   htmlOutput("urlText", inline = TRUE)
