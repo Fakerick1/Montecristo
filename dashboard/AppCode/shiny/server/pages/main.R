@@ -1,6 +1,6 @@
 pages.main.getPage <- function() {
   tagList(
-    div("Main page")
+    div("Very pretty main page, a lot of time went into this! :)")
     # div(class = "mainPage-wrapper",
     #   h1(strings[string.main.pageTitle, LANG]),
     #   div(class = "mainPage-frontpage mainPage-aboutApp",
