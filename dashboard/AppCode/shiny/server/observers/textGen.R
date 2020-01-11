@@ -39,7 +39,7 @@ observeEvent(input[[id.textGen.button.neural.train]], {
   text <- db.books$find(
     query = paste0('{"title": "', input[[id.general.book]], '" }'),
     fields = '{"data" : true}')$data[[1]] %>%
-    substr(100000, 1100000) %>%
+    substr(100000, 600000) %>%
     tokenize_characters(lowercase = TRUE, strip_non_alphanum = FALSE, simplify = TRUE)
 
   print(paste("Length of text: ", length(text)))
@@ -145,7 +145,7 @@ observeEvent(input[[id.textGen.button.neural.train]], {
       print(paste("Iteration: ", iteration))
 
       fit_model(model, vectors)
-      save_model_hdf5(model, paste0(input[[id.general.book]], ".h5"))
+      save_model_hdf5(model, paste0(input[[id.general.book]], iteration, ".h5"))
       gc()
       # for(diversity in c(0.2, 0.5, 1)) {
       #   print(paste("Diversity: ", diversity))
@@ -163,8 +163,7 @@ observeEvent(input[[id.textGen.button.neural.train]], {
 
   iterate_model(model, text, chars, max_length, diversity, vectors, 40)
 
-  phrase <- generate_phrase(model, text, chars, max_length, 0.6)
-  component.textGen.setOutputText(phrase)
+  print("Done training")
 })
 
 observeEvent(input[[id.textGen.button.neural.generate]], {
@@ -217,7 +216,7 @@ observeEvent(input[[id.textGen.button.load]], {
   c.text <<- db.books$find(
     query = paste0('{"title": "', input[[id.general.book]], '" }'),
     fields = '{"data" : true}')$data[[1]] %>%
-    substr(100000, 1100000) %>%
+    substr(100000, 600000) %>%
     tokenize_characters(lowercase = TRUE, strip_non_alphanum = FALSE, simplify = TRUE)
 
   print(paste("Length of text: ", length(c.text)))
